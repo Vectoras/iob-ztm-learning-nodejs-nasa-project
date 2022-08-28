@@ -1,0 +1,31 @@
+{
+  "name": "nasa-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install:server": "npm install --prefix server",
+    "install:client": "npm install --prefix client",
+    "install": "concurrently -m 1 \"npm install:server\" \"npm install:client\"",
+    "start:server": "npm run start --prefix server",
+    "start:client": "npm run start --prefix client",
+    "start-cluster:server": "npm run cluster --prefix server",
+    "start": "concurrently --kill-others --timings -t \"HH:mm:ss\" -n \" \" -p \"{name} ({time})\" -c \"blue,magenta\" \"npm:start:*\"",
+    "watch:server": "npm run watch --prefix server",
+    "watch:client": "npm run start --prefix client",
+    "watch": "concurrently --kill-others --timings -t \"HH:mm:ss\" -n \" \" -p \"{name} ({time})\"  -c \"blue,magenta\" \"npm:watch:*\"",
+    "test:server": "npm run test --prefix server",
+    "test:client": "npm run test --prefix client",
+    "test": "concurrently -m 1 --timings \"npm:test:server\" \"npm:test:client\" -c \"blue,magenta\"",
+    "test-watch:server": "npm run test-watch --prefix server",
+    "deploy": "concurrently --kill-others -m 1 --timings -t\"HH:mm:ss\" -n \"building-react-app,server\" -p \"{name} ({time})\" -c \"blue,magenta\" \"npm:build-on-server --prefix client\" \"npm:start --prefix server\" ",
+    "deploy-cluster": "concurrently --kill-others -m 1 --timings -t\"HH:mm:ss\" -n \"building-react-app,server\" -p \"{name} ({time})\" -c \"blue,magenta\" \"npm:build-on-server --prefix client\" \"npm:cluster --prefix server\" ",
+    "build:client": "npm run build-on-server --prefix client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "7.2.2"
+  }
+}
